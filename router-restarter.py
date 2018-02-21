@@ -7,6 +7,7 @@ import os
 def main():
     timer_length = 900  # 15 minutes
     password = 'admin'  # this is the default password, change it to your own if you've set one
+    sleep_time = 30
 
     base_time = time.time()
     strikes = 0
@@ -17,20 +18,21 @@ def main():
 
             if not ping():
                 strikes += 1
-                print('Internets are down at {}'.format(current_time_formatted))
+                print('Internets are DOWN!!!!11 at {}'.format(current_time_formatted))
             else:
                 print('Internets are operational at {}'.format(current_time_formatted))
 
             if time_passed(base_time, timer_length):  # runs at the end of the timer
-                if strikes >= (timer_length / 60) * 0.4:  # restarts the router if it was down 40% of the time or more
+                if strikes >= (timer_length / sleep_time) * 0.4:  # restarts if it was down 40% of the time or more
+                    print('Restarting...')
                     restart_router(password)
                     print('Router restarted at {}'.format(datetime.datetime.now().strftime('%I:%M %p')))
                 print()
                 base_time = time.time()
                 strikes = 0
 
-            time.sleep(60)
-            
+            time.sleep(sleep_time)
+
         except KeyboardInterrupt:
             print('Restarting...')
             restart_router(password)
