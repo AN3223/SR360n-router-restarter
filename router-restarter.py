@@ -1,7 +1,7 @@
 from selenium import webdriver
 
 TIMER_LENGTH = 900  # 15 minutes
-PASSWORD = '1999'
+PASSWORD = 'password'
 SLEEP_TIME = 5
 
 
